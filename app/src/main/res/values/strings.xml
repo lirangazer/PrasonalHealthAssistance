@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PrasonalHealthAssistance</string>
+    <string name="launch_logo">launch_logo</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="login">login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logo">logo</string>
+</resources>
