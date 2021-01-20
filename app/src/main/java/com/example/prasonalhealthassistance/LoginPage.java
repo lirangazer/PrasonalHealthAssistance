@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginPage extends AppCompatActivity {
-
+    final String[] s = new String[1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,27 +37,29 @@ public class LoginPage extends AppCompatActivity {
                 String userName = editUserName.getText().toString();
                 EditText editPassword = (EditText) findViewById(R.id.passwordBox);
                 String password = editPassword.getText().toString();
-                //Toast.makeText(LoginPage.this,"Hello "+password+"!",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginPage.this, MainPage.class);
-                startActivity(intent);
-                final String[] value = new String[1];
-                //init firebase db
+                 //init firebase db
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("name");
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                         value[0] = dataSnapshot.getValue(String.class);
-                         
-                              }
-                    @Override
-                    public void onCancelled(DatabaseError error) {
+                DatabaseReference userToAddRef2 = database.getReference("users");
+
+                for(int i=1;i<3;i++){
+                        userToAddRef2.child("user"+i+"").child("name").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = dataSnapshot.getValue(String.class);
+                            if(value.equals(userName)){
+                                Toast.makeText(getApplicationContext(), "Value is: " + value,Toast.LENGTH_SHORT).show();
+                            }
+                            //Toast.makeText(getApplicationContext(), "Value is: " + value,Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError error) {
                         // Failed to read value
-                        Toast.makeText(getApplicationContext(), "Failed to read value." + error.toException(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                Toast.makeText(LoginPage.this,"Hello "+value[0]+"!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Failed to read value." + error.toException(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                //Toast.makeText(LoginPage.this,"Hello "+value[0]+"!",Toast.LENGTH_LONG).show();
              }
          });
 
@@ -65,7 +67,7 @@ public class LoginPage extends AppCompatActivity {
     }
 /*    private String reachFromDB(String value)
     {
-        final String[] s = new String[1];
+
         //init firebase db
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("name");
