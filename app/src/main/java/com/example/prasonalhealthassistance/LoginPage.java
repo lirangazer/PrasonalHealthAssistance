@@ -1,17 +1,16 @@
 package com.example.prasonalhealthassistance;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.content.SearchRecentSuggestionsProvider;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,15 +43,18 @@ public class LoginPage extends AppCompatActivity {
                 userToAddRef2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean flag=false;
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             if((snap.child("name").getValue().toString().equals(userName)) && (snap.child("password").getValue() .toString().equals(password)) ){
                                 Intent intent = new Intent (LoginPage.this,MainPage.class);
                                 startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Value is: good" ,Toast.LENGTH_SHORT).show();
+                                flag=true;
+                                break;
+
                             }
-                            //String value = snap.child("user" + i).child("name").getValue().toString();
-
-
+                        }
+                        if(!flag){
+                            Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
                         }
                     }
 
