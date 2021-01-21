@@ -1,5 +1,6 @@
 package com.example.prasonalhealthassistance;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.AnimatorSet;
@@ -37,11 +38,30 @@ public class LoginPage extends AppCompatActivity {
                 String userName = editUserName.getText().toString();
                 EditText editPassword = (EditText) findViewById(R.id.passwordBox);
                 String password = editPassword.getText().toString();
-                 //init firebase db
+                //init firebase db
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference userToAddRef2 = database.getReference("users");
+                userToAddRef2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snap : snapshot.getChildren()) {
+                            if((snap.child("name").getValue().toString().equals(userName)) && (snap.child("password").getValue() .toString().equals(password)) ){
+                                Intent intent = new Intent (LoginPage.this,MainPage.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext(), "Value is: good" ,Toast.LENGTH_SHORT).show();
+                            }
+                            //String value = snap.child("user" + i).child("name").getValue().toString();
 
-                for(int i=1;i<3;i++){
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
+                /*for(int i=1;i<3;i++){
                         userToAddRef2.child("user"+i+"").child("name").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -59,12 +79,12 @@ public class LoginPage extends AppCompatActivity {
                         }
                     });
                 }
-                //Toast.makeText(LoginPage.this,"Hello "+value[0]+"!",Toast.LENGTH_LONG).show();
-             }
-         });
+                        //Toast.makeText(LoginPage.this,"Hello "+value[0]+"!",Toast.LENGTH_LONG).show();
+            }
+         });*/
 
 
-    }
+            }
 /*    private String reachFromDB(String value)
     {
 
@@ -85,6 +105,7 @@ public class LoginPage extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Failed to read value." + error.toException(), Toast.LENGTH_SHORT).show();
             }
         });
-     return s[0];
-    }*/
+     return s[0];*/
+        });
+    }
 }
