@@ -63,51 +63,16 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
 
-                /*for(int i=1;i<3;i++){
-                        userToAddRef2.child("user"+i+"").child("name").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            String value = dataSnapshot.getValue(String.class);
-                            if(value.equals(userName)){
-                                Toast.makeText(getApplicationContext(), "Value is: " + value,Toast.LENGTH_SHORT).show();
-                            }
-                            //Toast.makeText(getApplicationContext(), "Value is: " + value,Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                            Toast.makeText(getApplicationContext(), "Failed to read value." + error.toException(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                        //Toast.makeText(LoginPage.this,"Hello "+value[0]+"!",Toast.LENGTH_LONG).show();
-            }
-         });*/
+           }
 
-
-            }
-/*    private String reachFromDB(String value)
-    {
-
-        //init firebase db
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("name");
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                s[0] = dataSnapshot.getValue(String.class);
-                //Toast.makeText(getApplicationContext(), "Value is: " + s[0], Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Toast.makeText(getApplicationContext(), "Failed to read value." + error.toException(), Toast.LENGTH_SHORT).show();
-            }
         });
-     return s[0];*/
+        findViewById(R.id.signUpButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (LoginPage.this,SignupPage.class);
+                startActivity(intent);
+
+            }
         });
     }
 }
