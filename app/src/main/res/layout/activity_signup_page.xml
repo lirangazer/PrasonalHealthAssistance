@@ -6,4 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".SignupPage">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:layout_marginBottom="65dp"
+        android:contentDescription="@string/logo_singup"
+        app:layout_constraintBottom_toTopOf="@+id/signupUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/phaicon1" />
+
+    <EditText
+        android:id="@+id/signupUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/user_name_singup"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/textPasswordSignup"
+        app:layout_constraintStart_toStartOf="@+id/signupUserName"
+        app:layout_constraintTop_toBottomOf="@+id/signupUserName" />
+
+    <EditText
+        android:id="@+id/textPasswordSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password_signup"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/textPassword2Signup"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+    <EditText
+        android:id="@+id/textPassword2Signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/signupSave"
+        app:layout_constraintStart_toStartOf="@+id/signupSave"
+        app:layout_constraintTop_toBottomOf="@+id/textPasswordSignup" />
+
+    <Button
+        android:id="@+id/signupSave"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="204dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="171dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/sign_up_button"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword2Signup" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
