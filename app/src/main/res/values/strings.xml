@@ -14,4 +14,6 @@
     <string name="sign_up_button">Sign-Up</string>
     <string name="password_signup">Password</string>
     <string name="logo_main">logo main</string>
+    <string name="health_button">health button</string>
+    <string name="fitness_button">fitness button</string>
 </resources>
