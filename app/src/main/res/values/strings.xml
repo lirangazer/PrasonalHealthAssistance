@@ -16,4 +16,6 @@
     <string name="logo_main">logo main</string>
     <string name="health_button">health button</string>
     <string name="fitness_button">fitness button</string>
+    <string name="fitness">fitness</string>
+    <string name="health">health</string>
 </resources>
