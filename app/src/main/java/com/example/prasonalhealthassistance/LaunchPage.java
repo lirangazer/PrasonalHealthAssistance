@@ -20,7 +20,6 @@ public class LaunchPage extends AppCompatActivity {
                         Intent intent = new Intent (LaunchPage.this,LoginPage.class);
                         startActivity(intent);
                         finish();
-                        finish();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
