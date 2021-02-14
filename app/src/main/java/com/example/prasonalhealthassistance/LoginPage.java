@@ -39,13 +39,13 @@ public class LoginPage extends AppCompatActivity {
                 String password = editPassword.getText().toString();
                 //init firebase db
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference userToAddRef2 = database.getReference("users");
+                DatabaseReference userToAddRef2 = database.getReference("Users");
                 userToAddRef2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         boolean flag=false;
                         for (DataSnapshot snap : snapshot.getChildren()) {
-                            if((snap.child("name").getValue().toString().equals(userName)) && (snap.child("password").getValue() .toString().equals(password)) ){
+                            if((snap.child("User").getValue().toString().equals(userName)) && (snap.child("Password").getValue() .toString().equals(password)) ){
                                 Intent intent = new Intent (LoginPage.this,MainPage.class);
                                 startActivity(intent);
                                 flag=true;
