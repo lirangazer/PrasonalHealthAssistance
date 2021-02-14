@@ -34,7 +34,7 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText editUserName = (EditText) findViewById(R.id.userNameBox);
-                String userName = editUserName.getText().toString();
+                String userName = editUserName.getText().toString().toLowerCase();
                 EditText editPassword = (EditText) findViewById(R.id.passwordBox);
                 String password = editPassword.getText().toString();
                 //init firebase db
