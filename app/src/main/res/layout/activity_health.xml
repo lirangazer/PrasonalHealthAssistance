@@ -7,17 +7,14 @@
     tools:context=".HealthActivity">
 
 
-    <ListView
-        android:id="@+id/listview1"
-        android:layout_width="290dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="160dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPerson"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-     </ListView>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
