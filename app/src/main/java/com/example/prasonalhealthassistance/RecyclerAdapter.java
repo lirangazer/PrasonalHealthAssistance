@@ -63,6 +63,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
                 public void onClick(View view) {
                     RecyclerUtils ru = (RecyclerUtils) view.getTag();
                     Toast.makeText(view.getContext(), ru.getTitleName()+" is "+ ru.getDescription(), Toast.LENGTH_SHORT).show();
+
+
                 }
             });
 

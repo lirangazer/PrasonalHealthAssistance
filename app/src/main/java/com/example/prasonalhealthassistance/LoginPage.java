@@ -3,6 +3,7 @@ package com.example.prasonalhealthassistance;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginPage extends AppCompatActivity {
-    final String[] s = new String[1];
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class LoginPage extends AppCompatActivity {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.play(fadeIn);
         animatorSet.start();
+
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,13 +42,13 @@ public class LoginPage extends AppCompatActivity {
                 String userName = editUserName.getText().toString().toLowerCase();
                 EditText editPassword = (EditText) findViewById(R.id.passwordBox);
                 String password = editPassword.getText().toString();
+
+                //For Debug only --- Delete when its done with app --- Wihbe
+//                Intent intent = new Intent (LoginPage.this,MainPage.class);
+//                startActivity(intent);
+                //For Debug only --- Delete when its done with app --- Wihbe
+
                 //init firebase db
-
-                //For Debug only --- Delete when its done with app --- Wihbe
-                Intent intent = new Intent (LoginPage.this,MainPage.class);
-                startActivity(intent);
-                //For Debug only --- Delete when its done with app --- Wihbe
-
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference userToAddRef2 = database.getReference("Users");
                 userToAddRef2.addValueEventListener(new ValueEventListener() {
@@ -52,13 +57,17 @@ public class LoginPage extends AppCompatActivity {
                         boolean flag=false;
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             if((snap.child("User").getValue().toString().equals(userName)) && (snap.child("Password").getValue() .toString().equals(password)) ){
+
+                                //Saving username to sharedperf to use it further in the program.
+                                saveData(userName);
+
                                 Intent intent = new Intent (LoginPage.this,MainPage.class);
                                 startActivity(intent);
                                 flag=true;
                                 break;
-
                             }
                         }
+
                         if(!flag){
                             Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
                         }
@@ -68,17 +77,26 @@ public class LoginPage extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-
            }
-
         });
+
         findViewById(R.id.signUpButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (LoginPage.this,SignupPage.class);
                 startActivity(intent);
-
             }
         });
+    }
+
+    private void saveData(String userName)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(TEXT, userName);
+        editor.apply();
+        String data = sharedPreferences.getString(TEXT, "");
+        Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
     }
 }
