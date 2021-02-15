@@ -17,7 +17,7 @@
             android:layout_height="60dp" />
 
         <TextView
-            android:id="@+id/pNametxt"
+            android:id="@+id/Nametxt"
 
             android:textSize="20sp"
             android:layout_marginTop="6dp"
@@ -31,15 +31,15 @@
             android:layout_marginStart="8dp" />
 
         <TextView
-            android:id="@+id/pJobProfiletxt"
+            android:id="@+id/Descriptiontxt"
 
             android:textSize="14sp"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/pNametxt"
-            android:layout_alignLeft="@+id/pNametxt"
-            android:layout_alignStart="@+id/pNametxt" />
+            android:layout_below="@+id/Nametxt"
+            android:layout_alignLeft="@+id/Nametxt"
+            android:layout_alignStart="@+id/Nametxt" />
 
     </RelativeLayout>
 
