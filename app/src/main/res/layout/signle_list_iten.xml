@@ -11,13 +11,14 @@
 
         <ImageView
             android:id="@+id/userImg"
-            android:src="@mipmap/ic_launcher"
+
             android:layout_width="60dp"
+            android:scrollbars="vertical"
             android:layout_height="60dp" />
 
         <TextView
             android:id="@+id/pNametxt"
-            android:text="User Name"
+
             android:textSize="20sp"
             android:layout_marginTop="6dp"
             android:maxLines="1"
@@ -31,7 +32,7 @@
 
         <TextView
             android:id="@+id/pJobProfiletxt"
-            android:text="Job Profile"
+
             android:textSize="14sp"
             android:maxLines="1"
             android:layout_width="match_parent"

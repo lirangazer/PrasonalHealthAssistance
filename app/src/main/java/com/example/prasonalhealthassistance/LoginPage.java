@@ -38,6 +38,10 @@ public class LoginPage extends AppCompatActivity {
                 EditText editPassword = (EditText) findViewById(R.id.passwordBox);
                 String password = editPassword.getText().toString();
                 //init firebase db
+
+                Intent intent = new Intent (LoginPage.this,MainPage.class);
+                startActivity(intent);
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference userToAddRef2 = database.getReference("Users");
                 userToAddRef2.addValueEventListener(new ValueEventListener() {

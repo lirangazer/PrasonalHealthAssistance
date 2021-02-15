@@ -4,9 +4,9 @@ public class PersonUtils {
 
     private String personName;
     private String jobProfile;
-    private String imageProfile;
+    private int imageProfile;
 
-    public PersonUtils(String personName, String jobProfile,String imageProfile) {
+    public PersonUtils(String personName, String jobProfile,int imageProfile) {
         this.personName = personName;
         this.jobProfile = jobProfile;
         this.imageProfile = imageProfile;
@@ -28,12 +28,11 @@ public class PersonUtils {
         this.jobProfile = jobProfile;
     }
 
-
-    public String getImageProfile() {
+    public int getImageProfile() {
         return imageProfile;
     }
-
-    public void setImageProfile(String imageProfile) {
-        this.imageProfile = imageProfile;
-    }
+//
+//    public void setImageProfile(String imageProfile) {
+//        this.imageProfile = imageProfile;
+//    }
 }

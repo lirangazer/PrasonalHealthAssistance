@@ -38,6 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter <MyAdapter.ViewHolder> {
 
         holder.pName.setText(pu.getPersonName());
         holder.pJobProfile.setText(pu.getJobProfile());
+        holder.pImageProfile.setImageResource(pu.getImageProfile());
 
     }
 
@@ -46,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter <MyAdapter.ViewHolder> {
         return personUtils.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView pName;
         public TextView pJobProfile;
@@ -63,11 +64,8 @@ public class MyAdapter extends RecyclerView.Adapter <MyAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     PersonUtils cpu = (PersonUtils) view.getTag();
-
                     Toast.makeText(view.getContext(), cpu.getPersonName()+" is "+ cpu.getJobProfile(), Toast.LENGTH_SHORT).show();
-
                 }
             });
 
