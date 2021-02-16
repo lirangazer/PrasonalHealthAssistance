@@ -32,7 +32,6 @@ public class FitnessActivity extends AppCompatActivity {
         recyclerAdapter = new RecyclerAdapter(this, recyclerUtilsList);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     //Initialize the Recycler list object to hold the image and the relevant text

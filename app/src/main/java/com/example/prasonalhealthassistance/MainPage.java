@@ -12,21 +12,29 @@ public class MainPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.enterCollectionMain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainPage.this, UserView.class);
+                startActivity(intent);
+            }
+        });
+
         findViewById(R.id.fitnessButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Intent intent = new Intent (MainPage.this,FitnessActivity.class);
+                 Intent intent = new Intent(MainPage.this, FitnessActivity.class);
                  startActivity(intent);
             }
-
         });
+
         findViewById(R.id.healthButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (MainPage.this,HealthActivity.class);
+                Intent intent = new Intent(MainPage.this, HealthActivity.class);
                 startActivity(intent);
             }
-
         });
     }
 }

@@ -1,6 +1,6 @@
 package com.example.prasonalhealthassistance;
 
-public class UserData {
+public class UserModel {
 
     public String Email;
     public String User;

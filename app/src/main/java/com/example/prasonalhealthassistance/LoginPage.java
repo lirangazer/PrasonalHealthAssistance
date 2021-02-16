@@ -2,6 +2,7 @@ package com.example.prasonalhealthassistance;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class LoginPage extends AppCompatActivity {
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.play(fadeIn);
         animatorSet.start();
+        SharedPref.init(this);
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +61,10 @@ public class LoginPage extends AppCompatActivity {
                             if((snap.child("User").getValue().toString().equals(userName)) && (snap.child("Password").getValue() .toString().equals(password)) ){
 
                                 //Saving username to sharedperf to use it further in the program.
-                                saveData(userName);
+                                //saveData(userName);
+
+                                SharedPref.write("User", userName);
+                                String data = SharedPref.read("User","");
 
                                 Intent intent = new Intent (LoginPage.this,MainPage.class);
                                 startActivity(intent);
@@ -89,14 +94,14 @@ public class LoginPage extends AppCompatActivity {
         });
     }
 
-    private void saveData(String userName)
-    {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString(TEXT, userName);
-        editor.apply();
-        String data = sharedPreferences.getString(TEXT, "");
-        Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
-    }
+//    private void saveData(String userName)
+//    {
+//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString(TEXT, userName);
+//        editor.apply();
+////        String data = sharedPreferences.getString(TEXT, "");
+////        Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
+//    }
 }
