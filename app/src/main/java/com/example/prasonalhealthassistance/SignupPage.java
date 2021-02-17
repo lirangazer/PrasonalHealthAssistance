@@ -65,11 +65,14 @@ public class SignupPage extends AppCompatActivity {
                         //Save new user to the DB
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference userToAddRef = database.getReference("Users");
-                        userToAddRef.child("Users").child(user.User.toString());
-                        userToAddRef.child(user.User.toString()).setValue(user);
 
-                        Intent intent = new Intent (SignupPage.this,LoginPage.class);
-                        startActivity(intent);
+                        userToAddRef.child("Users").push().setValue(user);
+//                        userToAddRef.setValue(user);
+//                        userToAddRef.child(user.User).setValue(user);
+//                        userToAddRef.child(user.User.toString()).setValue(user);
+
+//                        Intent intent = new Intent (SignupPage.this,LoginPage.class);
+//                        startActivity(intent);
                     }
                 },  user.User, user.Email);
 
@@ -86,24 +89,24 @@ public class SignupPage extends AppCompatActivity {
 
 
     private void readData(FireBaseCallback fireBaseCallback, String userInput, String emailInput){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference userToAddRef2 = database.getReference("Users");
+        //DatabaseReference database = FirebaseDatabase.getInstance().getReference("UserModel");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");
 
-        userToAddRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+        database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean flag = true;
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    if (snap.child("User").getValue().toString().equals(userInput)) {
-                        Toast.makeText(getApplicationContext(), "Invalid Username the user is exist ", Toast.LENGTH_SHORT).show();
-                        flag = false;
-                    }
-
-                    if (snap.child("Email").getValue().toString().equals(emailInput)) {
-                        Toast.makeText(getApplicationContext(), "Invalid Email the Email is exist ", Toast.LENGTH_SHORT).show();
-                        flag = false;
-                    }
-                }
+//                for (DataSnapshot snap : snapshot.getChildren()) {
+//                    if (snap.child("User").getValue().toString().equals(userInput)) {
+//                        Toast.makeText(getApplicationContext(), "Invalid Username the user is exist ", Toast.LENGTH_SHORT).show();
+//                        flag = false;
+//                    }
+//
+//                    if (snap.child("Email").getValue().toString().equals(emailInput)) {
+//                        Toast.makeText(getApplicationContext(), "Invalid Email the Email is exist ", Toast.LENGTH_SHORT).show();
+//                        flag = false;
+//                    }
+//                }
 
                 fireBaseCallback.onCallback(flag);
             }

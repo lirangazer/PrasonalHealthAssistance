@@ -13,8 +13,9 @@
             android:id="@+id/userImg"
 
             android:layout_width="60dp"
-            android:scrollbars="vertical"
-            android:layout_height="60dp" />
+            android:layout_height="60dp"
+            android:contentDescription="@string/image"
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/Nametxt"
