@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class SignupPage extends AppCompatActivity {
     UserModel user = new UserModel();
-
+    boolean[] isTrue = new boolean[1];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,24 +58,20 @@ public class SignupPage extends AppCompatActivity {
                 readData(new FireBaseCallback() {
                     @Override
                     public void onCallback(boolean flag) {
-                        if(!flag) {
-                            return;
-                        }
-
-                        //Save new user to the DB
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference userToAddRef = database.getReference("Users");
-
-                        userToAddRef.child("Users").push().setValue(user);
-//                        userToAddRef.setValue(user);
-//                        userToAddRef.child(user.User).setValue(user);
-//                        userToAddRef.child(user.User.toString()).setValue(user);
-
-//                        Intent intent = new Intent (SignupPage.this,LoginPage.class);
-//                        startActivity(intent);
+                        isTrue[0] = flag;
                     }
                 },  user.User, user.Email);
 
+                //Add new child node to Users in DB as new registered user.
+                if(!isTrue[0])
+                    return;
+
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");;
+                database.child(user.User).setValue(user);
+                database.child(user.User).child("product").setValue(new RecyclerUtils("1", "1", 1));
+
+                Intent intent = new Intent (SignupPage.this,LoginPage.class);
+                startActivity(intent);
             }
         });
     }
@@ -87,26 +83,36 @@ public class SignupPage extends AppCompatActivity {
         return matcher.matches();
     }
 
-
     private void readData(FireBaseCallback fireBaseCallback, String userInput, String emailInput){
-        //DatabaseReference database = FirebaseDatabase.getInstance().getReference("UserModel");
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");
-
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean flag = true;
-//                for (DataSnapshot snap : snapshot.getChildren()) {
-//                    if (snap.child("User").getValue().toString().equals(userInput)) {
-//                        Toast.makeText(getApplicationContext(), "Invalid Username the user is exist ", Toast.LENGTH_SHORT).show();
-//                        flag = false;
-//                    }
-//
-//                    if (snap.child("Email").getValue().toString().equals(emailInput)) {
-//                        Toast.makeText(getApplicationContext(), "Invalid Email the Email is exist ", Toast.LENGTH_SHORT).show();
-//                        flag = false;
-//                    }
-//                }
+                try {
+                    UserModel user  = (UserModel)snapshot.child(userInput).getValue(UserModel.class);
+                    if(user != null)
+                    {
+                        Toast.makeText(getApplicationContext(), "User is exist", Toast.LENGTH_SHORT).show();
+                        flag = false;
+                    }
+
+                    if(flag)
+                    {
+                        for (DataSnapshot snap : snapshot.getChildren()) {
+                            if (snap.child("Email").getValue().toString().equals(emailInput)) {
+                                Toast.makeText(getApplicationContext(), "Email already exist", Toast.LENGTH_SHORT).show();
+                                flag = false;
+                            }
+                        }
+                    }
+                }
+
+                catch (Exception error)
+                {
+                    Toast.makeText(getApplicationContext(), "Invalid Email the Email is exist", Toast.LENGTH_SHORT).show();
+                    flag = false;
+                }
 
                 fireBaseCallback.onCallback(flag);
             }
@@ -114,7 +120,6 @@ public class SignupPage extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -122,5 +127,22 @@ public class SignupPage extends AppCompatActivity {
     private interface FireBaseCallback {
         void onCallback(boolean flag);
     }
-
 }
+
+//Check if username or mail are not exsit in the DB
+//                readData(new FireBaseCallback() {
+//                    @Override
+//                    public void onCallback(boolean flag) {
+//                        if(!flag) {
+//                            return;
+//                        }
+//
+//                        //Save new user to the DB
+//                        //userToAddRef.child(user.User).push().setValue(user);
+////                        userToAddRef.setValue(user);
+////                        userToAddRef.child(user.User).setValue(user);
+////                        userToAddRef.child(user.User.toString()).setValue(user);
+//
+//
+//                    }
+//                },  user.User, user.Email);
