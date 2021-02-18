@@ -44,8 +44,8 @@ public class LoginPage extends AppCompatActivity {
                 String password = editPassword.getText().toString();
 
                 //For Debug only --- Delete when its done with app --- Wihbe
-                Intent intent = new Intent (LoginPage.this,MainPage.class);
-                startActivity(intent);
+//                Intent intent = new Intent (LoginPage.this,MainPage.class);
+//                startActivity(intent);
                 //For Debug only --- Delete when its done with app --- Wihbe
 
                 //init firebase db

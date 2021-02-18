@@ -68,7 +68,7 @@ public class SignupPage extends AppCompatActivity {
 
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");;
                 database.child(user.User).setValue(user);
-                database.child(user.User).child("product").setValue(new RecyclerUtils("1", "1", 1));
+                database.child(user.User).child("products").child("product").setValue(new RecyclerUtils("1", "1", 1));
 
                 Intent intent = new Intent (SignupPage.this,LoginPage.class);
                 startActivity(intent);
