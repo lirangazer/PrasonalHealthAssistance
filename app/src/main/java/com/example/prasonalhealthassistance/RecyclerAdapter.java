@@ -40,19 +40,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemView.setTag(recyclerUtils.get(position));
         RecyclerUtils healthProperties = recyclerUtils.get(position);
-
+        String userName = SharedPref.read("user", "");
         final boolean[] favFlag = {true};
+
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(favFlag[0]) {
+
                     holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_green_24);
                     Toast.makeText(context.getApplicationContext(), "The activity add to fav", Toast.LENGTH_SHORT).show();
-                    favFlag[0] =false;
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference favButton = database.getReference("Users").child("liran").child("product").child("description");
-                    String a="a";
-                    favButton.setValue(healthProperties.getTitleName());
+                    DatabaseReference favButton = database.getReference("Users").child(userName).child("Products").child(healthProperties.getTitleName());
+                    favButton.setValue(new RecyclerUtils(healthProperties.getTitleName() , healthProperties.getDescription(), healthProperties.getImageProfile()));
 //                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
 //                        @Override
 //                        public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,12 +64,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
 //
 //                        }
 //                    });
-                    }
-                else {
-                    holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_gray_24);
-                    Toast.makeText(context.getApplicationContext(), "The activity remove to fav", Toast.LENGTH_SHORT).show();
-                    favFlag[0] =true;
-                }
+                   //                else {
+//                    holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_gray_24);
+//                    Toast.makeText(context.getApplicationContext(), "The activity remove to fav", Toast.LENGTH_SHORT).show();
+//                    favFlag[0] =true;
+//                }
 
             }
         });

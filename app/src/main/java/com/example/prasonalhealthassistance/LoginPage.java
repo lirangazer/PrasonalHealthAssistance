@@ -61,8 +61,8 @@ public class LoginPage extends AppCompatActivity {
                                 //Saving username to sharedperf to use it further in the program.
                                 //saveData(userName);
 
-                                SharedPref.write("User", userName);
-                                String data = SharedPref.read("User","");
+                                SharedPref.write("user", userName);
+                                String data = SharedPref.read("user","");
 
                                 Intent intent = new Intent (LoginPage.this,MainPage.class);
                                 startActivity(intent);
