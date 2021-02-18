@@ -120,15 +120,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
             imageProfile = itemView.findViewById(R.id.userImg);
             favButton = itemView.findViewById(R.id.fav);
 
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     RecyclerUtils ru = (RecyclerUtils) view.getTag();
                     //Toast.makeText(view.getContext(), ru.getTitleName()+" is "+ ru.getDescription(), Toast.LENGTH_SHORT).show();
-
-
                 }
             });
 

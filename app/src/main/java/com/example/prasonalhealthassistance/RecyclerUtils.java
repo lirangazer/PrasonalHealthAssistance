@@ -6,6 +6,8 @@ public class RecyclerUtils {
     private String description;
     private int imageProfile;
 
+    public RecyclerUtils() {}
+
     public RecyclerUtils(String titleName, String description, int imageProfile) {
         this.titleName = titleName;
         this.description = description;
