@@ -21,5 +21,6 @@
     <string name="your_collection">Your Collection</string>
     <string name="enter_to_your_collection">Enter to your collection</string>
     <string name="choose_health_and_fintness_program_to_add_to_your_collection">Choose Health and Fintness program to add to your collection</string>
-    <string name="image">Image</string>
+    <string name="image">image</string>
+
 </resources>

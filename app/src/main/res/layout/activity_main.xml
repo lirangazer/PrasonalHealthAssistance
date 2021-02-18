@@ -8,24 +8,26 @@
 
     <ImageButton
         android:id="@+id/healthButton"
-        android:layout_width="245dp"
-        android:layout_height="0dp"
+        android:layout_width="328dp"
+        android:layout_height="177dp"
         android:layout_marginBottom="62dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/health_button"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fitnessButton"
-        app:srcCompat="@drawable/food_menu_pic" />
+        app:srcCompat="@drawable/health_food" />
 
     <ImageButton
         android:id="@+id/fitnessButton"
         android:layout_width="236dp"
         android:layout_height="0dp"
         android:layout_marginBottom="46dp"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/fitness_button"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/healthButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

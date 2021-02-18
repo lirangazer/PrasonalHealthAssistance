@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="3dp">
 
     <RelativeLayout
         android:id="@+id/singleRow"
@@ -11,7 +15,6 @@
 
         <ImageView
             android:id="@+id/userImg"
-
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:contentDescription="@string/image"
@@ -20,27 +23,39 @@
         <TextView
             android:id="@+id/Nametxt"
 
-            android:textSize="20sp"
-            android:layout_marginTop="6dp"
-            android:maxLines="1"
-            android:layout_width="match_parent"
+            android:layout_width="262dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/userImg"
-            android:layout_toEndOf="@+id/userImg"
+            android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" />
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/userImg"
+            android:layout_toRightOf="@+id/userImg"
+            android:maxLines="1"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/Descriptiontxt"
 
-            android:textSize="14sp"
-            android:maxLines="1"
-            android:layout_width="match_parent"
+            android:layout_width="261dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Nametxt"
+            android:layout_alignStart="@+id/Nametxt"
             android:layout_alignLeft="@+id/Nametxt"
-            android:layout_alignStart="@+id/Nametxt" />
+            android:maxLines="1"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/fav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_baseline_add_task_gray_24" />
 
     </RelativeLayout>
 
@@ -51,4 +66,4 @@
         android:background="#f2f2f2" />
 
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
