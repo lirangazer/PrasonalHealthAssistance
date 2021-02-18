@@ -51,7 +51,7 @@ public class LoginPage extends AppCompatActivity {
                 //init firebase db
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference userToAddRef2 = database.getReference("Users");
-                userToAddRef2.addValueEventListener(new ValueEventListener() {
+                userToAddRef2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         boolean flag=false;

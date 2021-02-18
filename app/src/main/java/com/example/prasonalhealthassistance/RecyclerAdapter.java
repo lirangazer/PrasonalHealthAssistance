@@ -9,10 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -46,12 +50,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(favFlag[0]) {
                     holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_green_24);
-                    Toast.makeText(context.getApplicationContext(), "The activity add to fav", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context.getApplicationContext(), "The activity add to your collection", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context.getApplicationContext(), "The activity already exist in you collection ", Toast.LENGTH_SHORT).show();
+                }
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference favButton = database.getReference("Users").child(userName).child("Products").child(healthProperties.getTitleName());
-                    favButton.setValue(new RecyclerUtils(healthProperties.getTitleName() , healthProperties.getDescription(), healthProperties.getImageProfile()));
+                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                favButton.setValue(new RecyclerUtils(healthProperties.getTitleName() , healthProperties.getDescription(), healthProperties.getImageProfile()));
+                                favFlag[0]=false;
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
 //                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
 //                        @Override
 //                        public void onDataChange(@NonNull DataSnapshot snapshot) {

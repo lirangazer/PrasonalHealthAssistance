@@ -85,7 +85,7 @@ public class SignupPage extends AppCompatActivity {
 
     private void readData(FireBaseCallback fireBaseCallback, String userInput, String emailInput){
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean flag = true;
