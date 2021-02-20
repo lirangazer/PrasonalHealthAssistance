@@ -40,8 +40,8 @@ public class FitnessActivity extends AppCompatActivity {
         int count = 0;
         for (String imageName : imageNames)
         {
-            RecyclerUtils pu = new RecyclerUtils(imageName, imageDescription[count] ,images[count]);
-            recyclerUtilsList.add(pu);
+            RecyclerUtils ru = new RecyclerUtils(imageName, imageDescription[count] ,images[count]);
+            recyclerUtilsList.add(ru);
             count++;
         }
     }

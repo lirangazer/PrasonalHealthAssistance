@@ -46,19 +46,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
         RecyclerUtils healthProperties = recyclerUtils.get(position);
         String userName = SharedPref.read("user", "");
         final boolean[] favFlag = {true};
-
+        if(context.getClass().getName().toLowerCase().equals("com.example.prasonalhealthassistance.userview")){
+            holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_green_24);
+        }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference favButton = database.getReference("Users").child(userName).child("Products").child(healthProperties.getTitleName());
         holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(favFlag[0]) {
-                    holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_green_24);
-                    Toast.makeText(context.getApplicationContext(), "The activity add to your collection", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(context.getApplicationContext(), "The activity already exist in you collection ", Toast.LENGTH_SHORT).show();
-                }
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference favButton = database.getReference("Users").child(userName).child("Products").child(healthProperties.getTitleName());
+
+                if(context.getClass().getName().toLowerCase().equals("com.example.prasonalhealthassistance.fitnessactivity") || context.getClass().getName().toLowerCase().equals("com.example.prasonalhealthassistance.healthactivity")){
+                    if(favFlag[0]) {
+                        holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_green_24);
+                        Toast.makeText(context.getApplicationContext(), "The activity add to your collection", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(context.getApplicationContext(), "The activity already exist in you collection ", Toast.LENGTH_SHORT).show();
+                    }
                     favButton.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,7 +74,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
                         public void onCancelled(@NonNull DatabaseError error) {
 
                         }
+                    });}
+                else if(context.getClass().getName().toLowerCase().equals("com.example.prasonalhealthassistance.userview")){
+                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            holder.favButton.setBackgroundResource(R.drawable.ic_baseline_add_task_gray_24);
+                            Toast.makeText(context.getApplicationContext(), "The activity remove from your collection", Toast.LENGTH_SHORT).show();
+                            favButton.removeValue();
+                            favFlag[0]=true;
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
                     });
+                }
 
 //                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
 //                        @Override

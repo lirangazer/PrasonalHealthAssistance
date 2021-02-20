@@ -1,15 +1,12 @@
 package com.example.prasonalhealthassistance;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.nfc.Tag;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +16,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class UserView extends AppCompatActivity {
 
@@ -27,8 +23,6 @@ public class UserView extends AppCompatActivity {
     RecyclerView.Adapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
     List<RecyclerUtils> recyclerUtilsList = new ArrayList<>();
-    Boolean[] rr = new Boolean[1];
-    //UserModel userDB = new UserModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +45,11 @@ public class UserView extends AppCompatActivity {
 
         },  userName);
 
-//        recyclerView = findViewById(R.id.recyclerViewUserView);
-//        recyclerView.setHasFixedSize(true);
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerAdapter = new RecyclerAdapter(this, recyclerUtilsList);
-//        recyclerView.setAdapter(recyclerAdapter);
-//        recyclerView.setLayoutManager(layoutManager);
-
     }
 
     private void readData(UserView.FireBaseCallback fireBaseCallback, String userName) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference UsersDB = database.getReference("Users").child("wihbe");
+        DatabaseReference UsersDB = database.getReference("Users").child(userName);
 
         UsersDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
