@@ -3,7 +3,7 @@ package com.example.prasonalhealthassistance;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class FitnessActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewFitness);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(getApplicationContext(),2);
         prepareTheList();
         recyclerAdapter = new RecyclerAdapter(this, recyclerUtilsList);
         recyclerView.setAdapter(recyclerAdapter);

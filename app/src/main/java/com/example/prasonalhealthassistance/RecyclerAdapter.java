@@ -83,6 +83,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
                             Toast.makeText(context.getApplicationContext(), "The activity remove from your collection", Toast.LENGTH_SHORT).show();
                             favButton.removeValue();
                             favFlag[0]=true;
+
+//                            Intent intent = new Intent(this, UserView.class);
+//                            context.startActivity(intent);
+
                         }
 
                         @Override
@@ -90,6 +94,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.ViewH
 
                         }
                     });
+
                 }
 
 //                    favButton.addListenerForSingleValueEvent(new ValueEventListener() {
