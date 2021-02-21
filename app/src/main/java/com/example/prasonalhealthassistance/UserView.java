@@ -39,8 +39,9 @@ public class UserView extends AppCompatActivity {
                 {
                     RecyclerUtils product = snapshot.getValue(RecyclerUtils.class);
                     recyclerUtilsList.add(product);
-                    setupLayOut();
+
                 }
+                setupLayOut();
             }
 
         },  userName);
