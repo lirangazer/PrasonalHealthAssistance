@@ -1,6 +1,7 @@
 package com.example.prasonalhealthassistance;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,14 +24,16 @@ public class UserView extends AppCompatActivity {
     RecyclerView.Adapter recyclerAdapter;
     RecyclerView.LayoutManager layoutManager;
     List<RecyclerUtils> recyclerUtilsList = new ArrayList<>();
+    public TextView userTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_view);
-
         String userName = SharedPref.read("user", "");
+        userTitle=(TextView) findViewById(R.id.titleUserView);
+        userTitle.setText(userName+"'s"+ " Collection");
         readData(new FireBaseCallback() {
             @Override
             public void onCallback(DataSnapshot snap) {
