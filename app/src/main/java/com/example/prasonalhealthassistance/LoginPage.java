@@ -44,8 +44,8 @@ public class LoginPage extends AppCompatActivity {
                 String password = editPassword.getText().toString();
 
                 //For Debug only --- Delete when its done with app --- Wihbe
-//                Intent intent = new Intent (LoginPage.this,MainPage.class);
-//                startActivity(intent);
+                Intent intent = new Intent (LoginPage.this,MainPage.class);
+                startActivity(intent);
                 //For Debug only --- Delete when its done with app --- Wihbe
 
                 //init firebase db
@@ -59,7 +59,6 @@ public class LoginPage extends AppCompatActivity {
                             if((snap.child("User").getValue().toString().equals(userName)) && (snap.child("Password").getValue() .toString().equals(password)) ){
 
                                 //Saving username to sharedperf to use it further in the program.
-                                //saveData(userName);
 
                                 SharedPref.write("user", userName);
                                 String data = SharedPref.read("user","");
@@ -92,14 +91,4 @@ public class LoginPage extends AppCompatActivity {
         });
     }
 
-//    private void saveData(String userName)
-//    {
-//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString(TEXT, userName);
-//        editor.apply();
-////        String data = sharedPreferences.getString(TEXT, "");
-////        Toast.makeText(getApplicationContext(), "Invalid Username or password" ,Toast.LENGTH_SHORT).show();
-//    }
 }
